@@ -1,17 +1,19 @@
 from django.http import HttpResponse
+from django.shortcuts import render
+from .models import Artist
 # from django.urls import render
 
 
 def index(request):
     return HttpResponse("History!")
-    # artist_list = Artist.objects.order_by('name_text')
-    # context = {'artist_list': artist_list}
-    # return render(request, 'history/index.html', context)
 
 
 def artist_name(request):
-    return HttpResponse("What's up?!")
-    # return HttpResponse(artist_id)
+    artist_list = Artist.objects.order_by('name_text')
+    print(artist_list)
+    context = {'artist_list': artist_list}
+    return render(request, 'history/artist.html', context)
+
 
 def song_title  (request):
     return HttpResponse("Up!")
